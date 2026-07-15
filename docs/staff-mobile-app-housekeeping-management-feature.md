@@ -7,8 +7,6 @@
 **Status:** Draft v1.0
 **Related:** [Staff Mobile App — Feature Scope](staff-mobile-app-feature-scope.md) · [Front Desk — Deep-Dive](staff-mobile-app-front-desk-feature.md) · [Reservations Management — Deep-Dive](staff-mobile-app-reservations-management-feature.md) · [Competitive Feature Research](../HOTEL-~1.MD)
 
-> **Scope decision (2026-07-14):** **lost & found is out of scope.** All other housekeeping capabilities (real-time status, assignment, checklists/QA, workload, minibar/linen, room-ready alert, reassignment) are kept. See [Feature Prioritization](staff-mobile-app-feature-prioritization.md).
-
 ---
 
 ## 1. Executive Summary
@@ -155,7 +153,7 @@ The competitive research (Part B §3, *Housekeeping Management*) identified the 
 **Revenue / cost angle.** Keeps priority rooms moving despite disruptions (revenue via availability); avoids the idle time and bottlenecks of a rigid, manually-rebuilt plan (cost).
 
 ### 3.10 Replaces printed attendant worksheets · device-flexible
-*Precedent: protel, WebRezPro (paperless); Maestro (device-flexible). (Lost & found is out of scope.)*
+*Precedent: protel, WebRezPro (paperless); Maestro (device-flexible).*
 
 **What it is.** A fully digital, paperless housekeeping operation that runs on staff or hotel-provided devices (iOS / Android / Windows handhelds, tablets).
 
@@ -250,13 +248,22 @@ Housekeeping modules exist among BD vendors, but few combine real-time PMS sync,
 
 ---
 
-## 10. Release Phasing
+## 10. Scope delivered
 
-| Phase | Scope |
-|-------|-------|
-| **MVP** | Real-time room status, auto/manual assignment + task lists, per-room guest context + DND, instant room-ready alert, basic offline, RBAC. |
-| **Phase 2** | Digital cleaning checklists + supervisor inspection/QA with photos, supervisor↔attendant messaging + progress tracking, mobile reassignment. |
-| **Phase 3** | Workload balancing by credits/minutes, minibar/linen logging + folio posting, multilingual UI, advanced offline conflict resolution. |
+Atrium Staff ships as one complete package. This feature delivers:
+
+- Real-time room status
+- Auto/manual assignment + task lists
+- Per-room guest context + DND
+- Instant room-ready alert
+- Digital cleaning checklists + supervisor inspection/QA with photos
+- Supervisor↔attendant messaging + progress tracking
+- Mobile reassignment
+- Workload balancing by credits/minutes
+- Minibar/linen logging + folio posting
+- Multilingual UI
+- Offline support with advanced conflict resolution
+- RBAC
 
 ---
 

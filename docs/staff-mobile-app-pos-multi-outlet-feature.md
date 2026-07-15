@@ -7,8 +7,6 @@
 **Status:** Draft v1.1
 **Related:** [Staff Mobile App — Feature Scope](staff-mobile-app-feature-scope.md) · [Front Desk — Deep-Dive](staff-mobile-app-front-desk-feature.md) · [Competitive Feature Research](../HOTEL-~1.MD)
 
-> **Scope decision (2026-07-14):** this is **F&B core POS only**. **Spa/golf operations and retail POS are out of scope**, and reporting is reduced to basic consolidated sales totals (no dashboards/analytics). See [Feature Prioritization](staff-mobile-app-feature-prioritization.md).
-
 ---
 
 ## 1. Executive Summary
@@ -17,7 +15,7 @@
 
 The value is twofold: **revenue capture** (order and upsell anywhere, charge to room frictionlessly, never miss a post) and **operational unification** (one F&B POS instead of siloed terminals). Tableside/mobile ordering also speeds service and turns tables faster.
 
-Vendors anchor this in the resort segment: Hotelogix (multiple POS outlets — room service, restaurants; table/room/takeaway modes), Smart Software BD (mobile POS + tableside ordering, inventory & recipe costing), and Agilysys InfoGenesis (multi-venue F&B POS with consolidated reporting). *(Spa/golf and retail POS — offered by Agilysys/Maestro — are out of scope here.)*
+Vendors anchor this in the resort segment: Hotelogix (multiple POS outlets — room service, restaurants; table/room/takeaway modes), Smart Software BD (mobile POS + tableside ordering, inventory & recipe costing), and Agilysys InfoGenesis (multi-venue F&B POS with consolidated reporting).
 
 ---
 
@@ -30,7 +28,7 @@ Vendors anchor this in the resort segment: Hotelogix (multiple POS outlets — r
 | 1 | **Multi-outlet F&B POS** | Operate room service, restaurants, bars, poolside — with table / room / takeaway modes. |
 | 2 | **Mobile / tableside ordering** | Take orders at the table or poolside; fire to kitchen/bar; process payment on the spot. |
 | 3 | **Charge-to-room / folio posting** | Post any F&B charge directly to the guest folio ([front desk](staff-mobile-app-front-desk-feature.md) sees it live). |
-| 4 | **Consolidated F&B sales totals** | Basic consolidated sales across F&B outlets *(advanced analytics/dashboards out of scope)*. |
+| 4 | **Consolidated F&B sales totals** | Basic consolidated sales across F&B outlets. |
 | 5 | **Inventory & recipe/menu costing** | Track stock consumption and recipe costs from sales. |
 | 6 | **Payments (incl. local rails)** | Cards, tap-to-pay, and bKash/Nagad/SSLCommerz for the BD market. |
 | 7 | **Upsell & modifiers at point of sale** | Prompt add-ons, upsizes, and pairings at the moment of order. |
@@ -39,7 +37,7 @@ Vendors anchor this in the resort segment: Hotelogix (multiple POS outlets — r
 Multi-outlet **F&B** POS (table/room/takeaway), mobile/tableside ordering with kitchen/bar firing, charge-to-room/folio posting, payment capture, basic inventory/recipe costing, consolidated F&B sales totals, upsell/modifiers, offline support.
 
 ### 2.3 Out of scope (this release)
-**Spa & golf operations, retail POS,** casino gaming, full supply-chain procurement, complex banquet/catering contracting, standalone restaurant-only deployments, and **multi-venue analytics/dashboards beyond basic sales totals.** (See §9.)
+Casino gaming, full supply-chain procurement, complex banquet/catering contracting, and standalone restaurant-only deployments. (See §9.)
 
 ### 2.4 Key assumptions
 - PMS folio-post API is available for charge-to-room.
@@ -79,14 +77,11 @@ Each capability is elaborated — **what it is**, **how it works in Atrium**, **
 
 **What it is.** POS spanning F&B outlets — restaurants, bars, poolside, room service — with consolidated sales totals across venues.
 
-**How it works in Atrium.** Every F&B venue operates on the same platform; sales, discounts, and voids consolidate into one sales view. Management sees total F&B performance, not per-terminal fragments. *(Deep analytics/dashboards are out of scope.)*
+**How it works in Atrium.** Every F&B venue operates on the same platform; sales, discounts, and voids consolidate into one sales view. Management sees total F&B performance, not per-terminal fragments.
 
 **Why it matters.** The value is the single pane: one menu/pricing engine, one guest-F&B-spend view across the resort. It's the difference between managing outlets and managing an F&B business.
 
 **Revenue / cost angle.** Consolidated visibility supports menu, pricing, and staffing decisions (revenue + cost); one platform reduces integration and maintenance overhead (cost).
-
-### 3.4 Spa & golf operations — ❌ REMOVED FROM SCOPE
-*(Removed 2026-07-14. Precedent: Agilysys, Maestro. Spa/golf scheduling and resource coordination are high-value resort features but out of scope for v1 — the app covers F&B POS only.)*
 
 ---
 
@@ -160,26 +155,32 @@ Integrated resort F&B POS with charge-to-room and local payment rails is rare am
 | Payments / PCI | Mobile payment expands PCI scope | P2PE/tap-to-pay; hosted flows; tokenization |
 | Local gateways | bKash/Nagad/SSLCommerz for BD | Prioritize local-rail integration |
 | Offline service | Poolside/remote outlets lose Wi-Fi | Offline order queue with auto-sync |
-| Scope creep | Full restaurant/back-office ERP; spa/golf/retail | Keep F&B-core; defer full F&B ERP and non-F&B outlets |
+| Scope creep | Full restaurant/back-office ERP | Keep F&B-core; defer full F&B ERP |
 
 ---
 
-## 10. Release Phasing
+## 10. Scope delivered
 
-| Phase | Scope |
-|-------|-------|
-| **MVP** | Core F&B POS (table/room/takeaway), tableside ordering + kitchen/bar firing, charge-to-room/folio posting, payment capture, basic offline. |
-| **Phase 2** | Consolidated F&B sales totals, upsell/modifiers, inventory + recipe costing, local payment gateways. |
-| **Phase 3** | Advanced margin costing. *(Spa/golf, retail, and multi-venue analytics are out of scope.)* |
+Atrium Staff ships as one complete package. This feature delivers:
+
+- Core F&B POS (table/room/takeaway)
+- Tableside ordering + kitchen/bar firing
+- Charge-to-room/folio posting
+- Payment capture, including local payment gateways
+- Offline support
+- Consolidated F&B sales totals
+- Upsell/modifiers
+- Inventory + recipe costing
+- Advanced margin costing
 
 ---
 
 ## 11. Open Questions
 
-- Which F&B outlets are in scope for launch? *(Spa/golf/retail are out of scope.)*
+- Which F&B outlets are in scope for launch?
 - Is there an existing POS to integrate/replace, and what KDS/printer hardware is in place?
 - Which payment providers and local gateways for the BD market?
-- Is inventory/recipe costing required at launch or a later phase?
+- Is inventory/recipe costing required at launch?
 - Resort-only, or must this also serve standalone F&B venues?
 
 ---

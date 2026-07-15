@@ -7,8 +7,6 @@
 **Status:** Draft v1.1
 **Related:** [Staff Mobile App — Feature Scope](staff-mobile-app-feature-scope.md) · [Maintenance & Work Orders — Deep-Dive](staff-mobile-app-maintenance-work-orders-feature.md) · [Competitive Feature Research](../HOTEL-~1.MD)
 
-> **Scope decision (2026-07-14):** **operational analytics, concierge tasks, and lost & found are out of scope.** Kept: cross-department task routing, two-way messaging, guest-service assignment & monitoring, broadcasts, and the unified-ops accountability layer. See [Feature Prioritization](staff-mobile-app-feature-prioritization.md).
-
 ---
 
 ## 1. Executive Summary
@@ -17,7 +15,7 @@
 
 Every other feature area — [front desk](staff-mobile-app-front-desk-feature.md), [housekeeping](staff-mobile-app-housekeeping-management-feature.md), [maintenance](staff-mobile-app-maintenance-work-orders-feature.md) — generates tasks and requests that must reach the right person and be tracked to completion. This feature is where they converge. Its value is **accountability and speed**: nothing gets lost, everything is owned, and supervisors can see and fix bottlenecks in real time.
 
-Vendors position a unified operations platform as the difference between a collection of tools and an actual operating system for the property: ALICE/Actabl (unified ops, cross-department requests), Amadeus HotSOS (two-way desktop↔mobile messaging), and IDS Next FX Guest Service (assignment & monitoring). *(Concierge & lost-and-found task modules and operational analytics/reporting are out of scope.)*
+Vendors position a unified operations platform as the difference between a collection of tools and an actual operating system for the property: ALICE/Actabl (unified ops, cross-department requests), Amadeus HotSOS (two-way desktop↔mobile messaging), and IDS Next FX Guest Service (assignment & monitoring).
 
 ---
 
@@ -38,7 +36,7 @@ Vendors position a unified operations platform as the difference between a colle
 Cross-department task routing, two-way staff messaging (1:1/group/department/shift), guest-service assignment & monitoring, broadcasts with read receipts, task context/attachments, offline support, RBAC.
 
 ### 2.3 Out of scope (this release)
-**Operational analytics/reporting, concierge task modules, lost & found,** full HR/scheduling suite, external guest-facing messaging (that lives in the guest app), payroll, and social/non-work chat governance beyond basic moderation. (See §9.)
+Full HR/scheduling suite, external guest-facing messaging (that lives in the guest app), payroll, and social/non-work chat governance beyond basic moderation. (See §9.)
 
 ### 2.4 Key assumptions
 - Staff directory and department/role structure are available (from HR/PMS or maintained in-app).
@@ -84,15 +82,12 @@ Each capability is elaborated — **what it is**, **how it works in Atrium**, **
 
 **Revenue / cost angle.** SLA-managed guest service lifts satisfaction and review scores (revenue); live monitoring lets one supervisor oversee more staff effectively (cost).
 
-### 3.4 Concierge & lost-and-found — ❌ REMOVED FROM SCOPE
-*(Removed 2026-07-14. Precedent: Infor HMS. Dedicated concierge task modules and lost-and-found tracking are useful but out of scope for v1 — general cross-department requests (§3.1) can carry ad-hoc concierge tasks if needed.)*
-
-### 3.5 Unified ops accountability layer
+### 3.4 Unified ops accountability layer
 *Precedent: ALICE/Actabl.*
 
 **What it is.** A single platform connecting all departments for messaging, tasking, and accountability — one shared model of staff, rooms, guests, and departments.
 
-**How it works in Atrium.** All task and message streams live in one system so a request, its owner, its SLA, and its history are always visible to the right people. *(Operational analytics/reporting on top of this data is out of scope — this layer provides live operational visibility, not dashboards.)*
+**How it works in Atrium.** All task and message streams live in one system so a request, its owner, its SLA, and its history are always visible to the right people.
 
 **Why it matters.** Point tools create silos; a unified platform creates accountability. Supervisors can see where work sits, who owns it, and what's overdue — and act — without a separate reporting tool.
 
@@ -108,10 +103,7 @@ Front desk, housekeeping, and maintenance all generate work that crosses departm
 ### 4.2 Radios and WhatsApp are the status quo it replaces
 The default today is lossy, unrecorded, and off-platform. A purpose-built channel is faster, auditable, and compliant — and it keeps guest and staff data on company infrastructure.
 
-### 4.3 Live visibility, not analytics
-This layer gives supervisors real-time operational visibility (open tasks, owners, SLAs) to act in the moment. It deliberately stops short of analytics/reporting, which is out of scope.
-
-### 4.4 A competitive opening in the BD market
+### 4.3 A competitive opening in the BD market
 Few BD vendors offer a true unified cross-department ops platform. Atrium can lead locally.
 
 ---
@@ -170,13 +162,20 @@ Few BD vendors offer a true unified cross-department ops platform. Atrium can le
 
 ---
 
-## 10. Release Phasing
+## 10. Scope delivered
 
-| Phase | Scope |
-|-------|-------|
-| **MVP** | Cross-department task routing, two-way messaging (1:1/group/department), broadcasts with read receipts, task context/attachments, RBAC, basic offline. |
-| **Phase 2** | Guest-service assignment & monitoring board, escalation/SLA, unified accountability view. |
-| **Phase 3** | Advanced routing. *(Operational analytics, concierge modules, and lost & found are out of scope.)* |
+Atrium Staff ships as one complete package. This feature delivers:
+
+- Cross-department task routing
+- Two-way messaging (1:1/group/department)
+- Broadcasts with read receipts
+- Task context/attachments
+- RBAC
+- Offline support
+- Guest-service assignment & monitoring board
+- Escalation/SLA
+- Unified accountability view
+- Advanced routing
 
 ---
 
@@ -186,7 +185,7 @@ Few BD vendors offer a true unified cross-department ops platform. Atrium can le
 - Is off-platform messaging (WhatsApp) to be actively restricted, or just offered an alternative?
 - What notification-governance rules (quiet hours, priority bypass) are required?
 - Retention and audit requirements for staff messages containing guest data?
-- Single property confirmed (cross-property tasking is out of scope)?
+- Single property confirmed for v1?
 
 ---
 

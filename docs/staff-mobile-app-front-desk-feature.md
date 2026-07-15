@@ -33,8 +33,7 @@ This document defines the feature's scope, quantifies its business case, and map
 | 6 | **Key encoding** | Encode physical keycards via mobile encoder, or issue a digital/mobile key to the guest's phone. |
 | 7 | **Arrivals / departures / in-house board** | Search and filter today's arrivals, departures, and stayovers; see status at a glance. |
 | 8 | **Guest profile at hand** | View preferences, loyalty tier, VIP flags, notes, and stay history before the guest reaches the desk. |
-| 9 | **Multi-property & multi-location** | One login spans several properties or desks; ideal for chains and large resorts. |
-| 10 | **Offline mode with auto-sync** | Keep checking guests in during Wi-Fi dead zones or outages; queue and sync on reconnect. |
+| 9 | **Offline mode with auto-sync** | Keep checking guests in during Wi-Fi dead zones or outages; queue and sync on reconnect. |
 
 ### 2.2 In scope (this release)
 Reservation lookup, mobile check-in/out, room assignment/upgrade, folio & charge posting, payment capture, key issuance, arrivals/departures board, guest-profile view, offline queueing, RBAC.
@@ -64,16 +63,16 @@ The competitive research (Part B §1, *Front Desk on Mobile*) identified ten cap
 
 **Revenue / cost angle.** Drives the upsell-at-arrival moment (revenue) and cuts seconds-to-minutes of walking and app-switching per transaction across thousands of arrivals (cost). Folio posting on the spot captures incidentals that deferred posting loses.
 
-### 3.2 Real-time availability & multi-property reservations
+### 3.2 Real-time availability & reservations
 *Precedent: IDS Next FX Front Desk, Shiji.*
 
-**What it is.** A live, always-current view of room availability and the ability to view, create, or modify reservations from anywhere — for the current property *and* other properties in the group.
+**What it is.** A live, always-current view of room availability and the ability to view, create, or modify reservations from anywhere on property.
 
-**How it works in Atrium.** Availability reads and reservation writes hit the PMS in real time (or through the sync layer), so two roving agents never double-sell the same room. A group/chain user switches property context from one login to check availability or move a booking at a sister hotel.
+**How it works in Atrium.** Availability reads and reservation writes hit the PMS in real time (or through the sync layer), so two roving agents never double-sell the same room.
 
-**Why it matters.** Roving check-in only works if availability is trustworthy at every device simultaneously. Multi-property support turns the app into a group-wide reservations tool — useful for walk-in overflow ("we're full, but our property across town has space"), central reservations staff, and cluster front-office teams.
+**Why it matters.** Roving check-in only works if availability is trustworthy at every device simultaneously — every agent sees the same live picture and can create or modify a booking on the spot instead of walking back to a terminal.
 
-**Revenue / cost angle.** Recaptures overflow demand that would otherwise walk (revenue); lets a chain run leaner cluster front-office staffing across properties (cost).
+**Revenue / cost angle.** Trustworthy real-time availability lets agents capture walk-in and phone demand anywhere without oversell (revenue); removes back-to-the-desk lookups (cost).
 
 ### 3.3 Single-device PMS + POS + payments
 *Precedent: Shiji.*
@@ -150,7 +149,7 @@ The competitive research (Part B §1, *Front Desk on Mobile*) identified ten cap
 
 **Why it matters.** Front-office managers rarely sit at a desk during the busy hours when pricing decisions matter most. Mobile rate control means the person who sees the lobby filling up can act on it immediately, rather than waiting to get back to a terminal.
 
-**Revenue / cost angle.** Timely demand-based pricing is directly revenue-accretive — capturing rate on high-demand nights and protecting occupancy on soft ones. *(Note: full automated dynamic pricing / revenue management stays out of scope this release — this is manual, tactical rate control.)*
+**Revenue / cost angle.** Timely demand-based pricing is directly revenue-accretive — capturing rate on high-demand nights and protecting occupancy on soft ones. This is manual, tactical rate control at the point of sale.
 
 ### 3.10 Process guest payments on the go
 *Precedent: Stayntouch, Hotelogix, SiteMinder (Little Hotelier).*
@@ -242,7 +241,7 @@ Global leaders ship it; most Bangladeshi vendors do not offer a genuine mobile f
 | Item | Detail | Mitigation |
 |------|--------|------------|
 | PMS API depth | Real-time folio/room-status writes required | Middleware sync layer; graceful degradation |
-| Lock integration | Mobile/keycard encoding needs certified locks | Ship physical-key encoder support first; digital key as fast-follow |
+| Lock integration | Mobile/keycard encoding needs certified locks | Support both physical-key encoders and digital/mobile keys via certified lock integrations |
 | Payment / PCI | Mobile card capture expands PCI scope | Use P2PE readers / tokenized tap-to-pay; hosted links as fallback |
 | Wi-Fi dead zones | Property coverage gaps | Robust offline mode with clear sync status |
 | Device management | BYOD vs. company devices | MDM policy; kiosk/lockdown mode |
@@ -251,13 +250,22 @@ Global leaders ship it; most Bangladeshi vendors do not offer a genuine mobile f
 
 ---
 
-## 10. Release Phasing
+## 10. Scope delivered
 
-| Phase | Scope |
-|-------|-------|
-| **MVP** | Reservation lookup, arrivals/departures board, mobile check-in/out, room assignment, folio view + charge posting, physical-key encoding, RBAC, basic offline read. |
-| **Phase 2** | Payment capture (reader + tap-to-pay + local gateways), upgrade/upsell prompts at check-in, offline write + auto-sync, guest-profile depth. |
-| **Phase 3** | Digital/mobile key issuance, multi-property switching, single-device POS posting, upsell analytics, advanced conflict resolution. |
+Atrium Staff ships as one complete package. This feature delivers:
+
+- Reservation lookup and arrivals/departures board
+- Mobile check-in/out
+- Room assignment
+- Folio view + charge posting
+- Payment capture (reader + tap-to-pay + local gateways)
+- Upgrade/upsell prompts at check-in
+- Physical-key encoding
+- Digital/mobile key issuance
+- Single-device POS posting
+- Guest-profile depth
+- Offline read, offline write + auto-sync, and advanced conflict resolution
+- RBAC
 
 ---
 

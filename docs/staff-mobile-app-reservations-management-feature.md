@@ -38,7 +38,7 @@ Vendors treat it as core: RoomRaccoon and Cloudbeds ship drag-and-drop mobile ca
 Calendar/booking-chart view, drag-and-drop stay changes, room assignment + notes, create/edit/cancel reservations, room blocks and closures, pay-by-link, real-time booking notifications, availability validation, reservation search.
 
 ### 2.3 Out of scope (this release)
-Automated dynamic pricing and full revenue-management optimization, channel-manager rate distribution, group-contract negotiation/billing workflows, and guest-facing self-booking (that lives in the guest app / booking engine — see Future). Manual, tactical rate changes are covered under the [Front Desk deep-dive §3.9](staff-mobile-app-front-desk-feature.md).
+Full revenue-management optimization, channel-manager rate distribution, group-contract negotiation/billing workflows, and guest-facing self-booking (that lives in the guest app / booking engine — see Future). Manual, tactical rate changes are covered under the [Front Desk deep-dive §3.9](staff-mobile-app-front-desk-feature.md).
 
 ### 2.4 Key assumptions
 - The PMS exposes real-time reservation **read and write** APIs (not read-only), or a middleware sync layer bridges it.
@@ -147,7 +147,6 @@ Global leaders ship mobile calendars, instant-booking alerts, and pay-by-link; m
 3. **Lower reconciliation labor.** Real-time, in-the-moment entry means fewer late or missed bookings to chase and reconcile at night audit.
 4. **Reduced payment-handling time.** Pre-collected balances via pay-by-link shorten check-in and cut cash/card handling at the desk.
 5. **Fewer miscommunication reworks.** Structured notes and pre-assignment reduce the room moves, duplicate requests, and guest complaints that consume staff time.
-6. **Leaner cluster staffing.** Multi-property-aware reservations let a chain run centralized/cluster reservations coverage with fewer dedicated terminals and staff.
 
 ---
 
@@ -179,13 +178,22 @@ Global leaders ship mobile calendars, instant-booking alerts, and pay-by-link; m
 
 ---
 
-## 10. Release Phasing
+## 10. Scope delivered
 
-| Phase | Scope |
-|-------|-------|
-| **MVP** | Calendar/booking-chart view (read + tap-through), reservation search, room assignment + notes, create/edit/cancel reservations, instant booking push, RBAC + audit. |
-| **Phase 2** | Drag-and-drop stay changes with availability validation, room blocks & closures, pay-by-link (cards + local gateways). |
-| **Phase 3** | Multi-property reservations switching, channel-manager two-way sync, advanced conflict resolution, group-block tooling. |
+Atrium Staff ships as one complete package. This feature delivers:
+
+- Calendar/booking-chart view (read + tap-through)
+- Drag-and-drop stay changes with availability validation
+- Reservation search
+- Room assignment + notes
+- Create/edit/cancel reservations
+- Room blocks & closures
+- Pay-by-link (cards + local gateways)
+- Instant booking push
+- Channel-manager two-way sync
+- Group-block tooling
+- Advanced conflict resolution
+- RBAC + audit
 
 ---
 
@@ -195,7 +203,7 @@ Global leaders ship mobile calendars, instant-booking alerts, and pay-by-link; m
 - Is a channel manager in scope for v1, and can in-app changes propagate to it to avoid OTA oversell?
 - Which pay-by-link provider and local gateways (bKash / Nagad / SSLCommerz) for the BD market?
 - How granular should RBAC be — who may cancel, close rooms, or change rates?
-- Single-property pilot or chain rollout, and is multi-property reservations needed at launch?
+- Single-property pilot confirmed for v1?
 
 ---
 

@@ -3,19 +3,17 @@
 **Product:** Atrium Staff (Hotel / Resort Operations Mobile App)
 **Feature area:** F4 — Mobile Maintenance & Work Orders
 **Document owner:** rdasgupta@apexdmit.com
-**Last updated:** 2026-07-14
-**Status:** Draft v1.0
+**Last updated:** 2026-07-15
+**Status:** Draft v1.1
 **Related:** [Staff Mobile App — Feature Scope](staff-mobile-app-feature-scope.md) · [Housekeeping — Deep-Dive](staff-mobile-app-housekeeping-management-feature.md) · [Competitive Feature Research](../HOTEL-~1.MD)
-
-> **Scope decision (2026-07-14):** **preventive maintenance and asset history/register are out of scope.** Only **reactive work orders** (log → assign → track → close, with photos) are in the product. Sections below that discuss PM/asset history are retained for reference only. See [Feature Prioritization](staff-mobile-app-feature-prioritization.md).
 
 ---
 
 ## 1. Executive Summary
 
-**Mobile Maintenance & Work Orders** gives engineering and facilities staff a handheld system to log, assign, track, and close repairs from anywhere on property. It replaces the maintenance logbook, the whiteboard, and the radio with a photo-rich, request-to-completion workflow that keeps every asset working and every out-of-order room accounted for.
+**Mobile Maintenance & Work Orders** gives engineering and facilities staff a handheld system to log, assign, track, and close repairs from anywhere on property. It replaces the maintenance logbook, the whiteboard, and the radio with a photo-rich, request-to-completion workflow, and keeps every out-of-order room accounted for.
 
-Maintenance sits at the intersection of **guest experience**, **asset protection**, and **revenue**: a broken AC is a comp or a bad review; a room stuck out-of-order too long is lost inventory; a neglected chiller or pool pump is a capital failure waiting to happen. A mobile work-order system shortens the time from "something's broken" to "it's fixed," and preventive maintenance stops breakdowns before they cost anything.
+Maintenance sits at the intersection of **guest experience** and **revenue**: a broken AC is a comp or a bad review; a room stuck out-of-order too long is lost inventory. A mobile work-order system shortens the time from "something's broken" to "it's fixed."
 
 Vendors treat this as a core staff-ops pillar: ALICE/Actabl, Maestro, Quore, protel, WebRezPro (maintenance alarms), Amadeus HotSOS, Knowcross, and Smart Software (BD) all ship it.
 
@@ -30,26 +28,25 @@ Vendors treat this as a core staff-ops pillar: ALICE/Actabl, Maestro, Quore, pro
 | 1 | **Work-order creation & tracking** | Log a repair with notes and photos; assign it; track it request-to-completion across shifts. |
 | 2 | **Service orders & space inspections** | Generate service orders and run guestroom / public-area inspections via role-based access. |
 | 3 | **Guest-request & incident management** | Log, route, and track guest-reported issues and incidents to resolution. |
-| 6 | **Out-of-order / out-of-service control** | Flag rooms/areas OOO for repair (sync to PMS) and return them to service on completion. |
-| 7 | **Photo & note evidence** | Attach before/after photos and notes for accountability and warranty/insurance records. |
-| 8 | **Priority & SLA tracking** | Prioritize by severity; escalate overdue work orders. |
+| 4 | **Out-of-order / out-of-service control** | Flag rooms/areas OOO for repair (sync to PMS) and return them to service on completion. |
+| 5 | **Photo & note evidence** | Attach before/after photos and notes for accountability and warranty/insurance records. |
+| 6 | **Priority & SLA tracking** | Prioritize by severity; escalate overdue work orders. |
 
 ### 2.2 In scope (this release)
-Work-order create/assign/track/close, photo+note evidence, guest-request/incident logging, OOO control with PMS sync, priority/SLA, offline support, RBAC.
+Work-order create/assign/track/close, photo+note evidence, guest-request/incident logging, service orders & space inspections, OOO control with PMS sync, priority/SLA, offline support, RBAC.
 
 ### 2.3 Out of scope (this release)
-**Preventive maintenance scheduling & readings, asset history/register,** full CMMS/EAM procurement and parts-inventory purchasing, capital-project management, energy/BMS automation, and vendor-contract management. (Integrate with a CMMS where one exists — see §9.)
+Full CMMS/EAM procurement and parts-inventory purchasing, capital-project management, energy/BMS automation, and vendor-contract management. (Integrate with a CMMS where one exists — see §9.)
 
 ### 2.4 Key assumptions
 - OOO room status syncs to the PMS (real-time write) or via middleware.
-- An asset register can be seeded (import) or built in-app.
-- Attendants/technicians have devices; app degrades gracefully offline.
+- Technicians have devices; app degrades gracefully offline.
 
 ---
 
 ## 3. Capability Deep-Dive — The Maintenance Features
 
-The competitive research (Part B §4, *Maintenance & Work Orders*) identified the capabilities below. Each is elaborated — **what it is**, **how it works in Atrium**, **why it matters operationally**, and the **revenue/cost angle** — with vendor precedents noting the bar to clear.
+Each capability is elaborated — **what it is**, **how it works in Atrium**, **why it matters operationally**, and the **revenue/cost angle** — with vendor precedents noting the bar to clear.
 
 ### 3.1 Work-order creation & tracking (notes + photos, request-to-completion)
 *Precedent: ALICE/Actabl, Maestro work-order module, Quore, protel, WebRezPro maintenance alarms, Smart Software (BD).*
@@ -71,7 +68,7 @@ The competitive research (Part B §4, *Maintenance & Work Orders*) identified th
 
 **Why it matters.** Proactive inspection catches problems before guests do and turns findings directly into tracked work — closing the loop between "spotted an issue" and "someone's fixing it" without paper or verbal handoffs.
 
-**Revenue / cost angle.** Proactive fixes protect the guest experience and asset condition (revenue + capital protection); auto-generated orders remove manual re-entry (cost).
+**Revenue / cost angle.** Proactive fixes protect the guest experience and asset condition (revenue); auto-generated orders remove manual re-entry (cost).
 
 ### 3.3 Guest-request & incident management
 *Precedent: Knowcross, Quore.*
@@ -84,9 +81,6 @@ The competitive research (Part B §4, *Maintenance & Work Orders*) identified th
 
 **Revenue / cost angle.** Fast, tracked service recovery protects reviews, loyalty, and rate power (revenue); incident records reduce liability and dispute cost (cost).
 
-### 3.4 Preventive maintenance & asset history — ❌ REMOVED FROM SCOPE
-*(Removed 2026-07-14. Precedent: ALICE/Actabl, Quore. Scheduling recurring PM tasks, logging readings, and an asset history/register are valuable but out of scope for v1 — integrate a CMMS if a preventive program is required. Reactive work orders cover the core value.)*
-
 ---
 
 ## 4. Why This Matters
@@ -98,10 +92,10 @@ An out-of-order room earns nothing; a broken amenity earns a comp and a bad revi
 The faster a reported fault is fixed, the sooner an OOO room returns to sale and the fewer guests hit a broken amenity. A mobile work-order system is what makes request-to-completion fast on the floor.
 
 ### 4.3 Accountability is only real if it's tracked
-Photos, timestamps, and assignment history turn maintenance from a black box into a measurable, auditable operation — essential for warranty, insurance, compliance, and capital planning.
+Photos, timestamps, and assignment history turn maintenance from a black box into a measurable, auditable operation — essential for warranty, insurance, compliance, and dispute resolution.
 
 ### 4.4 A competitive opening in the BD market
-Few BD vendors offer photo-rich, PM-capable mobile work orders with PMS-synced OOO control. Atrium can lead locally.
+Few BD vendors offer photo-rich mobile work orders with PMS-synced OOO control. Atrium can lead locally.
 
 ---
 
@@ -113,8 +107,6 @@ Few BD vendors offer photo-rich, PM-capable mobile work orders with PMS-synced O
 | **Shift handover** | Open issues forgotten | Orders carry across shifts with full history. |
 | **OOO rooms** | Rooms stuck OOO too long | Tracked repairs + PMS sync return rooms to sale fast. |
 | **Guest complaints** | Fall through the cracks | Logged, routed, tracked, and closed with the guest. |
-| **Preventive upkeep** | Ad-hoc, skipped when busy | Scheduled PM tasks surface when due, with readings. |
-| **Asset knowledge** | Lives in one person's head | Full asset history on every device. |
 | **Inspections** | Paper, no follow-through | Digital inspections auto-generate service orders. |
 
 ---
@@ -124,19 +116,16 @@ Few BD vendors offer photo-rich, PM-capable mobile work orders with PMS-synced O
 1. **Faster OOO recovery.** Tracked, prioritized repairs return rooms to sellable inventory sooner — especially valuable on high-occupancy days.
 2. **Protected reviews and rate power.** Fast fixes to guest-facing issues prevent the comps and negative reviews that erode pricing and loyalty.
 3. **Service recovery.** Structured guest-issue handling turns complaints into recoveries that retain guests and direct rebookings.
-4. **Asset longevity → avoided capital spend.** Preventive maintenance defers costly replacements, freeing capital for revenue-generating investment.
 
-> **Illustrative model:** If faster repair cycles reduce average OOO room-days by even 1 room-day/week at a $120 ADR, that is ~$6,200/year per recovered room-day trend — before counting avoided comps, protected reviews, and deferred capital replacement. *(Figures illustrative; validate against property data.)*
+> **Illustrative model:** If faster repair cycles reduce average OOO room-days by even 1 room-day/week at a $120 ADR, that is ~$6,200/year per recovered room-day trend — before counting avoided comps and protected reviews. *(Figures illustrative; validate against property data.)*
 
 ---
 
 ## 7. How It Reduces Operational Cost
 
-1. **Fewer emergency repairs.** Preventive maintenance and early inspection catch issues before they become expensive emergency call-outs.
-2. **No lost tickets / rework.** Tracked orders eliminate the duplicated and forgotten work that paper logs and radios produce.
-3. **Extended asset life.** Scheduled PM and readings defer premature replacement of major equipment.
-4. **Lower liability and compliance cost.** Incident records and compliance logging (pool, fire, safety) reduce risk exposure and audit effort.
-5. **Efficient technician routing.** Prioritized, location-tagged orders cut wasted travel and idle time.
+1. **No lost tickets / rework.** Tracked orders eliminate the duplicated and forgotten work that paper logs and radios produce.
+2. **Lower liability and dispute cost.** Incident records and photo evidence reduce risk exposure and dispute effort.
+3. **Efficient technician routing.** Prioritized, location-tagged orders cut wasted travel and idle time.
 
 ---
 
@@ -146,9 +135,7 @@ Few BD vendors offer photo-rich, PM-capable mobile work orders with PMS-synced O
 |-----------|--------|--------|
 | Faster repairs | Median work-order resolution time | ↓ 40% |
 | Less downtime | Average OOO room-days | ↓ measurable |
-| Preventive coverage | PM tasks completed on schedule | ≥ 95% |
 | Guest-issue recovery | Guest-reported issues closed within SLA | ≥ 90% |
-| Asset reliability | Emergency vs. planned repair ratio | shift toward planned |
 | Accountability | Work orders with photo evidence | ≥ target % |
 
 ---
@@ -158,7 +145,6 @@ Few BD vendors offer photo-rich, PM-capable mobile work orders with PMS-synced O
 | Item | Detail | Mitigation |
 |------|--------|------------|
 | PMS OOO sync | Real-time room-status write needed | Middleware sync; queue + reconcile |
-| Asset register | Requires seeding/import | Import tooling; build-as-you-go |
 | CMMS overlap | Property may run a CMMS | Integrate/sync rather than duplicate |
 | Photo storage | Volume + retention | Compression, retention policy, secure storage |
 | Offline zones | Plant rooms/basements lack Wi-Fi | Offline mode with auto-sync |
@@ -166,13 +152,19 @@ Few BD vendors offer photo-rich, PM-capable mobile work orders with PMS-synced O
 
 ---
 
-## 10. Release Phasing
+## 10. Scope delivered
 
-| Phase | Scope |
-|-------|-------|
-| **MVP** | Work-order create/assign/track/close with photos + notes, OOO control + PMS sync, priority/SLA, basic offline, RBAC. |
-| **Phase 2** | Guest-request/incident management, mobile inspections auto-generating service orders, asset register + history. |
-| **Phase 3** | Compliance logging, CMMS integration (if a preventive program is adopted later). *(Preventive maintenance & asset history are out of scope for v1.)* |
+Atrium Staff ships as one complete package. This feature delivers:
+
+- Work-order create/assign/track/close with photos + notes
+- OOO control + PMS sync
+- Priority/SLA
+- Offline support
+- RBAC
+- Guest-request/incident management
+- Mobile inspections auto-generating service orders
+- Compliance logging
+- CMMS integration
 
 ---
 
@@ -181,11 +173,10 @@ Few BD vendors offer photo-rich, PM-capable mobile work orders with PMS-synced O
 - Does the launch PMS support real-time OOO status writes?
 - Is there an existing CMMS to integrate with, or is Atrium the system of record?
 - What compliance logs are mandatory (pool, fire, lift) in the target market?
-- How is the asset register seeded — import, or build in-app over time?
 - What photo-retention and evidentiary requirements apply?
 
 ---
 
 ## 12. One-Line Business Case
 
-> **Mobile Maintenance & Work Orders shortens the time from broken to fixed and stops breakdowns before they happen — protecting inventory, guest experience, and capital assets from the technician's hand.**
+> **Mobile Maintenance & Work Orders shortens the time from broken to fixed — protecting inventory and guest experience with a photo-rich, tracked, request-to-completion workflow from the technician's hand.**
